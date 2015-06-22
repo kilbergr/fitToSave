@@ -1,13 +1,26 @@
 <%include ../partials/header %>
-		<% articles.forEach(function(article){%>
+	<% articles.forEach(function(article){%>
+		
+	<div>
 		<p>
 		<!-- Format date -->
 		<% var date = new Date(article.published_date)%>
 		<% var pubdate = date.getMonth()+1+ '/' + date.getDate() + '/' + date.getFullYear(); %>
 
 		<!-- What to display -->
-				<a href="<%= article.url %>">Article</a>: <%= article.title %> <%= article.byline %> written on <%= pubdate %> in <%= article.geo_facet %> from the <%= article.section %> section.
-				<% }) %>
-			</p>
+				<a href="<%= article.url %>">Article</a>: <%= article.title %> <%= article.byline %> written on <%= pubdate %> in <%= article.geo_facet %> from the <%= article.section %> section.</p>
+				
+			<form action="/articles" method="POST">
+
+				<input type="hidden" name="article[title]" value<%=article.title%>> 
+				<input type="hidden" name="article[author]" value<%=article.byline%>> 
+				<input type="hidden" name="article[loc]" value<%=article.geo_facet%>> 
+				 <input type="hidden" name="article[date]" value<%=pubdate%>> 
+			 <input type="hidden" name="article[section]" value	<%=article.section%>> 
+				<input type="submit" value="Add Article">
+				
+			</form>
+		<% }) %>
+	</div>
 
 <%include ../partials/footer %>

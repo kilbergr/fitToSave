@@ -42,6 +42,7 @@ app.get('/articles', function(req, res){
 });
 
 
+app.get('/')
 
 app.listen(8000, function(){
 	console.log('server listening : 8000');
