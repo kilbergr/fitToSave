@@ -1,0 +1,13 @@
+<%include ../partials/header %>
+		<% articles.forEach(function(article){%>
+		<p>
+		<!-- Format date -->
+		<% var date = new Date(article.published_date)%>
+		<% var pubdate = date.getMonth()+1+ '/' + date.getDate() + '/' + date.getFullYear(); %>
+
+		<!-- What to display -->
+				<a href="<%= article.url %>">Article</a>: <%= article.title %> <%= article.byline %> written on <%= pubdate %> in <%= article.geo_facet %> from the <%= article.section %> section.
+				<% }) %>
+			</p>
+
+<%include ../partials/footer %>
